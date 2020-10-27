@@ -41,9 +41,8 @@ class AlienInvasion:
 
         #Determine the number of rows of alien that fit on the screen
         ship_height = self.ship.rect.height
-        available_space_y = (
-            self.settings.screen_height - (10 * alien_height) - ship_height
-            )
+        available_space_y = (self.settings.screen_height - 
+            (10 * alien_height) - ship_height)
         number_rows = available_space_y // (2 * alien_height)
 
         #Create the full fleet of aiens
@@ -68,6 +67,7 @@ class AlienInvasion:
             self._check_events()
             self.ship.update()
             self._update_bullets()
+            self._update_aliens()
             self._update_screen()
 
             #get rid of the bullets that have disappeared.
@@ -126,6 +126,10 @@ class AlienInvasion:
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
         self.aliens.draw(self.screen)
+
+    def _update_aliens(self):
+        """Update the positions of all aliens in the fleet"""
+        self.aliens.update()
 
 
         #Make the most recently drawn screen visible
